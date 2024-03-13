@@ -1,0 +1,16 @@
+{
+  "posts" : [
+    {
+      "id" : "next.js13-udemy",
+      "title" : "Next.js13をUdemyで学ぶ",
+      "content" : "shincodeの教材で学ぶ",
+      "createAt" : "2022/07/14"
+    },
+    {
+      "id" : "json-server",
+      "title" : "json-severを学ぶ",
+      "content" : "コーディングなしで完全な偽のREST APIを30秒以内に取得します。プロと対陽イングとモックの作成のための迅速なパッケージ",
+      "createAt" : "2022/07/16"
+    }
+  ]
+}
