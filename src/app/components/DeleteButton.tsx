@@ -11,7 +11,13 @@ const DeleteButton:React.FC<Props> = ({id }) => {
     const [loading, setLoading] = useState(false)
     const handleDelete = async () => {
         setLoading(true)
-        await deleteArticle(id.toString())
+        // await deleteArticle(id.toString())
+        const API_URL = process.env.NEXT_PUBLIC_URL;
+
+        const res = await fetch(`${API_URL}/api/${id.toString()}`, {
+            method: "DELETE",
+        });
+
         setLoading(false)
         router.push("/")
         router.refresh()
