@@ -2,6 +2,7 @@
 import {createArticle} from "@/blogApi";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
+import axios from "axios";
 
 const CreateBlogPage =  () => {
     const router = useRouter()
@@ -13,7 +14,17 @@ const CreateBlogPage =  () => {
         e.preventDefault()
 
         setLoading(true)
-        await createArticle(id,title,content)
+        // await createArticle(id,title,content)
+        const API_URL = process.env.NEXT_PUBLIC_URL;
+
+        // await axios.post(`${API_URL}/api`, {id,title,content});
+        const newArtilce = await fetch(`${API_URL}/api`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id, title, content }),
+        });
         setLoading(false)
         router.push("/")
         router.refresh()

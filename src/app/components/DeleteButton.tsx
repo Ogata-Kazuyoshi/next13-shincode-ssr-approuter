@@ -4,14 +4,14 @@ import {deleteArticle} from "@/blogApi";
 import {useRouter} from "next/navigation";
 
 type Props = {
-    id : string
+    id : number
 }
-const DeleteButton:React.FC<Props> = ({id}) => {
+const DeleteButton:React.FC<Props> = ({id }) => {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const handleDelete = async () => {
         setLoading(true)
-        await deleteArticle(id)
+        await deleteArticle(id.toString())
         setLoading(false)
         router.push("/")
         router.refresh()
