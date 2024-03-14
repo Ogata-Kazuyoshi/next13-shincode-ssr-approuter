@@ -3,6 +3,8 @@ import {Inter} from "next/font/google";
 import "./globals.css";
 import Header from "@/app/Header";
 import Footer from "@/app/Footer";
+import {Suspense} from "react";
+import Loading from "@/app/loading";
 
 
 export const metadata: Metadata = {
@@ -18,8 +20,14 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body className='container mx-auto bg-slate-700 text-slate-50'>
-            <Header />
-            {children}
+            <div className='flex flex-col min-h-screen'>
+                <main className='flex-grow'>
+                    <Header />
+                    <Suspense fallback={<Loading />}>
+                        {children}
+                    </Suspense>
+                </main>
+            </div>
             <Footer />
         </body>
         </html>

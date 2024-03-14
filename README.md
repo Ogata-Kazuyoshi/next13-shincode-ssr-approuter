@@ -7,9 +7,9 @@
 
 - [Nextjsセットアップ](#Nextjsセットアップ)
 - [CSRの書き方](#CSRの書き方)
-- [index.tsxについて](#index.tsxについて)
-- [ダイナミックルーティングについて](#ダイナミックルーティングについて)
-- [Linkタグとaタグの違い](#Linkタグとaタグの違い)
+- [suspenseについて](#suspenseについて)
+- [ダイナミックルーティング](#ダイナミックルーティング)
+
 
 - [参考](#参考)
 
@@ -48,22 +48,62 @@ What import alias would you like configured? @/*
 'use client'
 
 export default  function Home() {
-    useEffect(()=>{
+    useEffect(() => {
         const getArticle = async () => {
-            const res = await fetch('http://localhost/3001/posts',{cache : "force-cache"})
+            const res = await fetch('http://localhost/3001/posts', {cache: "force-cache"})
             return await res.json()
         }
         getArticle()
     })
-   
+
     return (
         <div className='md:flex'>
             <section className='w-full md:w-2/3 flex flex-col items-center px-3'>
                 <ArticleList articles={articles}/>
             </section>
-        ....
+            ....
         </div>)
+}
 ```
+
+# suspenseについて
+
+- 子供の要素がLoadingされるまでの間表示しておきたいコンポーネントをsuspenseコンポーネントのfallbackで定義
+- Loadingのぐるぐるなどを表示したいときに使う
+
+```tsx
+<Suspense fallback={<Loading />}>
+    {children}
+</Suspense>
+```
+
+# ダイナミックルーティング
+
+- 呼び出し側はLinkタグのhref属性で飛びにいく
+
+```tsx
+<Link href={`/articles/${article.id}`} />
+```
+
+- 遷移先のpageの作成は、app配下に該当のパスに相当するフォルダ階層を設ける
+- page.tsxのパスパラメータで指定したい変数名をもったフォルダを作成。今回の例は [id] フォルダを作成
+
+```tsx
+const Article:React.FC<GetStaticPropsContext> = async ({params}) => {
+    const detailArticle = await getDetailArticle(params?.id)
+
+    return <div >
+        <h1>{detailArticle.title}</h1>
+        <div>
+            <p>{detailArticle.content}</p>
+        </div>
+    </div>
+}
+export default Article
+```
+
+
+
 
 # 参考
 - [Nextjsの公式ドキュメント](https://nextjs.org/docs)
