@@ -2,7 +2,7 @@ import {NextApiRequest, NextApiResponse} from "next";
 import {supabase} from "@/utils/supabaseClient";
 import {NextResponse} from "next/server";
 
-export async function GET(req:NextApiRequest,res:NextApiResponse) {
+export async function GET(req:Request,res:Response) {
 
     const { data, error } = await supabase
         .from('supabase_blog')
