@@ -11,6 +11,7 @@ export default async function Home() {
     const res = await fetch(`${API_URL}/api`,{cache: "no-cache"})
 
     const articles:Article[] = await res.json()
+    console.log("article : ", articles)
   return (
       <div className='md:flex'>
           <section className='w-full md:w-2/3 flex flex-col items-center px-3'>

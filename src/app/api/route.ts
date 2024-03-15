@@ -8,6 +8,7 @@ export async function GET(req:NextRequest,res:NextResponse) {
         .select('*')
 
     if (error) {
+        console.log("/pageのGETでエラーです")
         return NextResponse.json(error);
     }
 
