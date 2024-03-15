@@ -25,7 +25,7 @@ export default async function Home() {
     // }, []);
     const articles:Article[] =  res.data
     // const articles:Article[] =  []
-    // console.log("article : ", articles)
+    console.log("article : ", articles)
   return (
       <div className='md:flex'>
           <section className='w-full md:w-2/3 flex flex-col items-center px-3'>
