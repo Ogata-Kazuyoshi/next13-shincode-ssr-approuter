@@ -1,9 +1,11 @@
+"use client"
 import Image from "next/image";
 import ArticleList from "@/app/components/ArticleList";
 import {getAllArticles} from "@/blogApi";
 import {supabase} from "@/utils/supabaseClient";
 import {Article} from "@/types/types";
 import axios from "axios";
+import {useEffect, useState} from "react";
 
 export default async function Home() {
     // const articles = await getAllArticles()
@@ -15,10 +17,18 @@ export default async function Home() {
     //         'Cache-Control': 'no-store', // SSRの際にキャッシュを無効にする
     //     },
     // });
+    const [articles, setArticles] = useState<Article[]>([])
 
+    useEffect(() => {
+        const api = async () => {
+            const res = await axios.get(`${API_URL}/api`)
+            setArticles(res.data)
+        }
+        api()
+    }, []);
     // const articles:Article[] =  res.data
-    const articles:Article[] =  []
-    console.log("article : ", articles)
+    // const articles:Article[] =  []
+    // console.log("article : ", articles)
   return (
       <div className='md:flex'>
           <section className='w-full md:w-2/3 flex flex-col items-center px-3'>
