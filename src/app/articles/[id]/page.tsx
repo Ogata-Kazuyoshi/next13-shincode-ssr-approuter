@@ -1,8 +1,5 @@
-import {GetStaticPropsContext} from "next";
 import React from "react";
 import Image from "next/image";
-import {getDetailArticle} from "@/blogApi";
-import articleCard from "@/app/components/ArticleCard";
 import DeleteButton from "@/app/components/DeleteButton";
 
 
