@@ -12,21 +12,21 @@ export default async function Home() {
     // console.log(supabase)
     const API_URL = process.env.NEXT_PUBLIC_URL
     // const res = await fetch(`${API_URL}/api`,{cache: "no-cache"})
-    // const res = await axios.get(`${API_URL}/api`, {
-    //     headers: {
-    //         'Cache-Control': 'no-store', // SSRの際にキャッシュを無効にする
-    //     },
-    // });
-    const [articles, setArticles] = useState<Article[]>([])
-
-    useEffect(() => {
-        const api = async () => {
-            const res = await axios.get(`${API_URL}/api`)
-            setArticles(res.data)
-        }
-        api()
-    }, []);
-    // const articles:Article[] =  res.data
+    const res = await axios.get(`${API_URL}/api`, {
+        headers: {
+            'Cache-Control': 'no-cache',
+        },
+    });
+    // const [articles, setArticles] = useState<Article[]>([])
+    //
+    // useEffect(() => {
+    //     const api = async () => {
+    //         const res = await axios.get(`${API_URL}/api`)
+    //         setArticles(res.data)
+    //     }
+    //     api()
+    // }, []);
+    const articles:Article[] =  res.data
     // const articles:Article[] =  []
     // console.log("article : ", articles)
   return (
