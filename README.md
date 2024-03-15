@@ -10,6 +10,7 @@
 - [クライアントサイドしか使用できない](#クライアントサイドしか使用できない)
 - [suspenseについて](#suspenseについて)
 - [ダイナミックルーティング](#ダイナミックルーティング)
+- [デプロイ関係](#デプロイ関係)
 
 
 - [参考](#参考)
@@ -108,6 +109,16 @@ const Article:React.FC<GetStaticPropsContext> = async ({params}) => {
 }
 export default Article
 ```
+
+# デプロイ関係
+
+- supabaseのDBを使用してVercelにデプロイ
+- 設定した環境変数は①SupabaseURL②SupabaseANON _KEY③Vercelドメイン
+- json.parse()の部分がうまく走らず、axiosを使用した形に変更
+- app/page.tsxを仮にCSRで書き直した場合をコメントアウトで残しておく
+
+[verselリンク]URL(https://next13-shincode-ssr-approuter-g5t67.vercel.app/)
+[supabaseURL]URL(https://supabase.com/dashboard/project/lcbhcmaqosvqckbhroxq/editor/28645)
 
 
 
