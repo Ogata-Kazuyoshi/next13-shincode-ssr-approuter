@@ -1,4 +1,3 @@
-import {NextApiRequest, NextApiResponse} from "next";
 import {supabase} from "@/utils/supabaseClient";
 import {NextResponse} from "next/server";
 
