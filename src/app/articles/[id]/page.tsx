@@ -7,7 +7,7 @@ import DeleteButton from "@/app/components/DeleteButton";
 
 
 
-const Article:React.FC<GetStaticPropsContext> = async ({params}) => {
+const Article = async ({params}:{params : {id : string}}) => {
     // const detailArticle = await getDetailArticle(params?.id)
     // console.log('detailArticle : ', detailArticle)
     const API_URL = process.env.NEXT_PUBLIC_URL;
