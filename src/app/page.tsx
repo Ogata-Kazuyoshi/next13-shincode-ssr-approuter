@@ -3,14 +3,20 @@ import ArticleList from "@/app/components/ArticleList";
 import {getAllArticles} from "@/blogApi";
 import {supabase} from "@/utils/supabaseClient";
 import {Article} from "@/types/types";
+import axios from "axios";
 
 export default async function Home() {
     // const articles = await getAllArticles()
     // console.log(supabase)
     const API_URL = process.env.NEXT_PUBLIC_URL
-    const res = await fetch(`${API_URL}/api`,{cache: "no-cache"})
+    // const res = await fetch(`${API_URL}/api`,{cache: "no-cache"})
+    const res = await axios.get(`${API_URL}/api`, {
+        headers: {
+            'Cache-Control': 'no-store', // SSRの際にキャッシュを無効にする
+        },
+    });
 
-    const articles:Article[] = await res.json()
+    const articles:Article[] =  res.data
     console.log("article : ", articles)
   return (
       <div className='md:flex'>
